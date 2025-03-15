@@ -6,12 +6,8 @@ import useForm from "../hooks/useForm";
 
 export default function Send() {
     const [messageApi, contextHolder] = message.useMessage();
-    const { values, changeHandler } = useForm({
-        message: '',
-    });
-
-  const formSubmit = async (e) => {
-      e.preventDefault();
+    
+    const formSubmit = async (values) => {
 
     await fetch('http://localhost:3030/jsonstore/messages', {
       method: 'POST',
@@ -29,10 +25,16 @@ export default function Send() {
         content: 'Successfully sent message',
     });
   };
+    
+    const { values, changeHandler, submitHandler } = useForm({
+        message: '',
+    }, formSubmit);
+
+  
   return (
     <>
       {contextHolder}
-      <form onSubmit={formSubmit}>
+      <form onSubmit={submitHandler}>
         <Input
           size="large"
           name="message"
