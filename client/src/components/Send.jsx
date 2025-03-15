@@ -4,7 +4,10 @@ import { Input, Button, message } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import useForm from "../hooks/useForm";
 
-export default function Send() {
+export default function Send({
+  user, 
+
+}) {
     const [messageApi, contextHolder] = message.useMessage();
     
     const formSubmit = async (values) => {
@@ -15,7 +18,7 @@ export default function Send() {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        author: 'John Doe',
+        author: user,
         content: values.message,
       }),
     });
@@ -26,9 +29,10 @@ export default function Send() {
     });
   };
     
-    const { values, changeHandler, submitHandler } = useForm({
+    const { values, changeHandler, submitHandler } = useForm(formSubmit, {
         message: '',
-    }, formSubmit);
+        author: '',
+    });
 
   
   return (

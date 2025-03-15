@@ -4,7 +4,8 @@ import { Link } from 'react-router';
 import { 
     HomeOutlined, 
     MessageOutlined,
-    SendOutlined 
+    SendOutlined,
+    LoginOutlined, 
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 
@@ -23,6 +24,11 @@ const items = [
       label: <Link to="/send">Send</Link>,
       key: 'send',
       icon: <SendOutlined />,
+    },
+    {
+      label: <Link to="/login">Login</Link>,
+      key: 'login',
+      icon: <LoginOutlined />,
     },
 ];
 
