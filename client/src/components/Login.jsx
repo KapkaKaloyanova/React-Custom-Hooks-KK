@@ -2,10 +2,11 @@ import { Input, Button } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import useForm from "../hooks/useForm";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Login({
-    onLogin,
-}){
+export default function Login(){
+    const { userLoginHandler } = useContext(UserContext);
     const navigate = useNavigate();
     const initialFormState = {
         username: '',
@@ -17,7 +18,7 @@ export default function Login({
         submitHandler, 
         values 
     } = useForm(values => {
-        onLogin(values.username),
+        userLoginHandler(values.username),
         navigate('/send')
     }, initialFormState);
 
