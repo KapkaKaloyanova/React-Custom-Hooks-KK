@@ -3,11 +3,12 @@ import '@ant-design/v5-patch-for-react-19';
 import { Input, Button, message } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import useForm from "../hooks/useForm";
-import { useContext } from 'react';
+import { use, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 
 export default function Send() {
-    const { user } = useContext(UserContext);
+    // const { user } = useContext(UserContext); 
+    const { user } = use(UserContext); // use API: can be called conditionally, it is not a hook
     const [messageApi, contextHolder] = message.useMessage();
     
     const formSubmit = async (values) => {
